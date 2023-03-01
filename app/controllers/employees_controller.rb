@@ -5,7 +5,7 @@ class EmployeesController < ApplicationController
 
   # GET /employees or /employees.json
   def index
-    @employees = Employee.all
+    @employees = Employee.all.includes(:employments, :departments).where(employments: { ends_on: nil })
   end
 
   # GET /employees/1 or /employees/1.json
