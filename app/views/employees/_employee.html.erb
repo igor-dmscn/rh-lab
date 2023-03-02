@@ -6,17 +6,17 @@
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Department:</strong>
-    <%= '<curent department name>' %>
+    <%= @employee.employments.last.department.name if @employee.employments.any? %>
   </p>
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Position:</strong>
-    <%= '<curent position name>' %>
+    <%= @employee.employments.last.position.name if @employee.employments.any? %>
   </p>
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Salary:</strong>
-    <%= '<curent salary>' %>
+    <%= @employee.employments.last.salary if @employee.employments.any? %>
   </p>
 
   <p class="my-5">

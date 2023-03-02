@@ -13,4 +13,6 @@ class Employee < ApplicationRecord
            foreign_key: :manager_id
 
   validates :name, presence: true
+
+  scope :currently_employed, -> { includes(:employments, :departments).where.not(employments: { id: nil }).where(employments: { ends_on: nil }) }
 end
