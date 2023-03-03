@@ -11,5 +11,7 @@ class DashboardsController < ApplicationController
 
     # @active_employees = Department.joins(:employments).where(employments: { ends_on: nil }).group(:id).pluck(:name, 'count(employments.employee_id)')
     @active_employees = Department.active_employments.group(:id).pluck(:name, 'count(employments.employee_id)')
+
+    @employees_by_manager = Employee.joins(managed_departments: [:employments]).where(employments: { ends_on: nil }).group(:id).pluck(:name, 'count(employments.employee_id)')
   end
 end
