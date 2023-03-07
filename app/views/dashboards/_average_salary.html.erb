@@ -7,10 +7,10 @@
           <th class="bg-blue-100 border text-left px-8 py-4 whitespace-nowrap">Average Salary</th>
         </tr>
       </thead>
-      <% data.each do |row| %>
+      <% data.each do |position, average_salary| %>
         <tr>
-          <td class="border px-8 py-4 w-full whitespace-nowrap">-</td>
-          <td class="border px-8 py-4 w-full whitespace-nowrap"></td>
+          <td class="border px-8 py-4 w-full whitespace-nowrap"><%= position.name %></td>
+          <td class="border px-8 py-4 w-full whitespace-nowrap"><%= number_to_currency(average_salary) %></td>
         </tr>
       <% end %>
     </table>
