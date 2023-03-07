@@ -1,15 +1,17 @@
 # frozen_string_literal: true
 
 class EmployeesController < ApplicationController
-  before_action :set_employee, only: %i[show edit update destroy]
+  before_action :set_employee, only: %i[edit update destroy]
 
   # GET /employees or /employees.json
   def index
-    @employees = Employee.all.includes(:employments, :departments).where(employments: { ends_on: nil }).where.not(employments: { id: nil })
+    @employees = Employee.currently_employed
   end
 
   # GET /employees/1 or /employees/1.json
-  def show; end
+  def show
+    @employee = Employee.includes(:assignments, :projects, :departments, employments: [:position]).order('projects.starts_on DESC').find(params[:id])
+  end
 
   # GET /employees/new
   def new
