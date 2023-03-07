@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class DepartmentsController < ApplicationController
-  before_action :set_department, only: %i[show edit update destroy]
+  before_action :set_department, only: %i[edit update destroy]
 
   # GET /departments or /departments.json
   def index
@@ -9,7 +9,10 @@ class DepartmentsController < ApplicationController
   end
 
   # GET /departments/1 or /departments/1.json
-  def show; end
+  def show
+    # @department = Department.includes(employments: [:employee]).where(employments: { ends_on: nil }).find(params[:id])
+    @department = Department.joins(employments: :employee).where(employments: { ends_on: nil }).find(params[:id])
+  end
 
   # GET /departments/new
   def new
